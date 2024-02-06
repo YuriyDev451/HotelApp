@@ -1,6 +1,8 @@
 plugins {
-    id("com.android.library")
-    id("org.jetbrains.kotlin.android")
+    id(Plugins.androidLibrary)
+    id(Plugins.jetbrainsKotlin)
+    id(Plugins.kotlinKapt)
+    id(Plugins.hilt)
 }
 
 android {
@@ -33,11 +35,25 @@ android {
 }
 
 dependencies {
+    implementation(project(":data"))
+    implementation(project(":common"))
+    implementation(project(":entities"))
 
-    implementation("androidx.core:core-ktx:1.12.0")
+    implementation(Libs.Hilt.hilt)
+    kapt(Libs.Hilt.hiltKapt)
+
+    implementation(Libs.KotlinEx.coreCore)
+    implementation(Libs.UI.appCompat)
+    implementation(Libs.UI.material)
+    testImplementation(Libs.Test.junitTest)
+    androidTestImplementation(Libs.Test.extJunitTest)
+    androidTestImplementation(Libs.Test.espressoTest)
+
+
+    /*implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.11.0")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")*/
 }

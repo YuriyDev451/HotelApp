@@ -1,6 +1,8 @@
 plugins {
     id(Plugins.androidApplication)
     id(Plugins.jetbrainsKotlin)
+    id(Plugins.kotlinKapt)
+    id(Plugins.hilt)
 
 }
 
@@ -41,9 +43,14 @@ dependencies {
     implementation(Libs.UI.constraintLayout)
     implementation(Libs.UI.appCompat)
     implementation(Libs.KotlinEx.coreCore)
+    implementation(Libs.Navigation.navigationFragment)
+    implementation(Libs.Navigation.navigationUi)
     testImplementation(Libs.Test.junitTest)
     androidTestImplementation(Libs.Test.extJunitTest)
     androidTestImplementation(Libs.Test.espressoTest)
+
+    implementation(Libs.Hilt.hilt)
+    kapt(Libs.Hilt.hiltKapt)
 
     //implementation("androidx.core:core-ktx:1.12.0")
     //implementation("androidx.appcompat:appcompat:1.6.1")
