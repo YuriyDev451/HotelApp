@@ -1,6 +1,8 @@
 plugins {
     id(Plugins.androidLibrary)
     id(Plugins.jetbrainsKotlin)
+
+
 }
 
 android {
@@ -33,6 +35,11 @@ android {
 }
 
 dependencies {
+
+    implementation(project(":domain"))
+    implementation(project(":entities"))
+    implementation(project(":common"))
+
     implementation(Libs.KotlinEx.coreCore)
     implementation(Libs.UI.appCompat)
     implementation(Libs.UI.material)

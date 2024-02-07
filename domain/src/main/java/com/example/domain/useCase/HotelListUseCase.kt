@@ -1,14 +1,15 @@
 package com.example.domain.useCase
 
 import com.example.common.Resource
-import com.example.common.Resource.Loading
 import com.example.data.HotelsRepositoryInterface
+import com.example.domain.mapper.HotelsResponseToUIStateMapper
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
-class SearchListUseCase @Inject constructor(
-    private val repositoryInterface: HotelsRepositoryInterface
+class HotelListUseCase @Inject constructor(
+    private val repositoryInterface: HotelsRepositoryInterface,
+    private val mapper: HotelsResponseToUIStateMapper
 ) {
     suspend fun getHotels() = flow {
         emit(Resource.Loading())
