@@ -28,7 +28,9 @@ class HotelsResponseToUIStateMapper @Inject constructor(): BaseMapper<Result, Ho
                 checkOutTime = it.details?.checkOutTime ?: "",
                 cityCenterDistance = it.details?.cityCenterPointDistance ?: 0.0,
                 cityCenterDistanceName = it.details?.cityCenterPointDistanceName ?: "",
-                thumbnailImage = it.details?.extra?.thumbnailImage ?: ""
+                thumbnailImage = it.details?.extra?.thumbnailImage ?: "",
+                price = it.rooms?.firstOrNull()?.offers?.firstOrNull()?.price ?: 0,
+                roomName = it.rooms?.firstOrNull()?.offers?.firstOrNull()?.concept?.description ?: ""
 
             )
         }

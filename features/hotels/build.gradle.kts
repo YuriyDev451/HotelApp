@@ -3,6 +3,8 @@ plugins {
     id(Plugins.jetbrainsKotlin)
     id(Plugins.kotlinKapt)
     id(Plugins.hilt)
+
+
 }
 
 android {
@@ -45,6 +47,8 @@ dependencies {
     androidTestImplementation(Libs.Test.extJunitTest)
     androidTestImplementation(Libs.Test.espressoTest)
     implementation("androidx.navigation:navigation-fragment-ktx:2.7.6")
+    implementation("com.github.bumptech.glide:glide:4.12.0")
+    annotationProcessor("com.github.bumptech.glide:compiler:4.12.0")
 
     implementation(project(":common"))
     implementation(project(":domain"))

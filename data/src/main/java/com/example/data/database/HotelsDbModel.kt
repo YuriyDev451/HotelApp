@@ -1,14 +1,11 @@
-package com.example.entities.uimodel
+package com.example.data.database
 
-data class HotelSearchUIState (
-    //val header: SearchHeaderUiModel,
-    val hotels: List<HotelListUIModel>?)
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
-//data class SearchHeaderUiModel(
-//    val origin : String,
-//    val destination: String)
-
-data class HotelListUIModel(
+@Entity
+data class HotelsDbModel(
+    @PrimaryKey(autoGenerate = true)
     val id: Int,
     val name: String,
     val address: String,
@@ -22,4 +19,5 @@ data class HotelListUIModel(
     val cityCenterDistanceName: String,
     val thumbnailImage: String,
     val price: Int,
-    val roomName: String)
+    val roomName: String
+)

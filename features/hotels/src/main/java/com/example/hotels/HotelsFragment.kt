@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.hotels.databinding.FragmentHotelsBinding
 import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.WithFragmentBindings
@@ -19,20 +20,48 @@ class HotelsFragment : Fragment() {
 
     val viewModel: HotelsViewModel by viewModels()
 
+    private lateinit var adapter: HotelsAdapter
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentHotelsBinding.inflate(inflater)
 
-        binding.button2.setOnClickListener {
-            lifecycleScope.launch{
-                viewModel.getFlights()
-            }
-
-        }
+//        binding.button2.setOnClickListener {
+//            lifecycleScope.launch{
+//                viewModel.getFlights()
+//            }
+//
+//        }
 
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        initRecyclerAdapter()
+
+        lifecycleScope.launch {
+            viewModel.getFlights()
+        }
+
+
+
+        viewModel.data.observe(viewLifecycleOwner){
+            adapter.setData(it?.hotels ?: listOf())
+        }
+
+        //addButton()
+    }
+
+    private fun initRecyclerAdapter(){
+        adapter = HotelsAdapter()
+
+
+        binding.recyclerView.layoutManager = LinearLayoutManager(context)
+        binding.recyclerView.adapter = adapter
     }
 
 
