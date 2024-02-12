@@ -16,15 +16,28 @@ object Versions {
     const val okhttpLogging = "4.10.0"
     const val okhttp = "5.0.0-alpha.3"
     const val gson = "2.10.1"
-}
-//implementation("androidx.appcompat:appcompat:1.6.1")
-//"androidx.core:core-ktx:1.12.0"
 
-//"junit:junit:4.13.2"
-//"androidx.test.ext:junit:1.1.5"
-//"androidx.test.espresso:espresso-core:3.5.1"
+    const val glide = "4.12.0"
+    const val glideCompiler = "4.12.0"
+
+    const val nav = "2.7.6"
+    const val coroutine = "1.7.1"
+
+}
+
+
+//implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
+
 
 object Libs {
+    object Coroutine{
+        const val kotlinCoroutine = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutine}"
+    }
+
+    object Glide{
+        const val glideGlide = "com.github.bumptech.glide:glide:${Versions.glide}"
+        const val glideCompiler = "com.github.bumptech.glide:compiler:${Versions.glideCompiler}"
+    }
     object UI {
         const val appCompat = "androidx.appcompat:appcompat:${Versions.compat}"
         const val material = "com.google.android.material:material:${Versions.materialComponents}"
@@ -51,6 +64,7 @@ object Libs {
     object Navigation {
         const val navigationFragment = "androidx.navigation:navigation-fragment-ktx:${Versions.navigation}"
         const val navigationUi = "androidx.navigation:navigation-ui-ktx:${Versions.navigation}"
+        const val navigation = "androidx.navigation:navigation-fragment-ktx:${Versions.nav}"
     }
 
     object Hilt {

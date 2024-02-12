@@ -57,7 +57,9 @@ class HotelsFragment : Fragment() {
     }
 
     private fun initRecyclerAdapter(){
-        adapter = HotelsAdapter()
+        adapter = HotelsAdapter{
+            viewModel.insert(it)
+        }
 
 
         binding.recyclerView.layoutManager = LinearLayoutManager(context)

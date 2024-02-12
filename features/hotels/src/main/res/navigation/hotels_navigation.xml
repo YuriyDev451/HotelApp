@@ -9,4 +9,5 @@
         android:name="com.example.hotels.HotelsFragment"
         android:label="HotelsFragment" />
 
+
 </navigation>

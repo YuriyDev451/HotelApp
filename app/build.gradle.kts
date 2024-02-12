@@ -36,6 +36,9 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    buildFeatures{
+        viewBinding = true
+    }
 }
 
 dependencies {
@@ -53,6 +56,7 @@ dependencies {
     kapt(Libs.Hilt.hiltKapt)
 
     implementation(project(":features:hotels"))
+    implementation(project(":features:favorite"))
 
     //implementation("androidx.core:core-ktx:1.12.0")
     //implementation("androidx.appcompat:appcompat:1.6.1")

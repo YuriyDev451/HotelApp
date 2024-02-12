@@ -11,7 +11,7 @@ import com.example.entities.uimodel.HotelListUIModel
 import com.example.hotels.databinding.FragmentHotelsBinding
 import com.example.hotels.databinding.HotelListItemBinding
 
-class HotelsAdapter: RecyclerView.Adapter<HotelsAdapterViewHolder>() {
+class HotelsAdapter(private val onItemClick: (HotelListUIModel) -> Unit): RecyclerView.Adapter<HotelsAdapter.HotelsAdapterViewHolder>() {
 
 
     private val differ = AsyncListDiffer(this, diffCallback)
@@ -32,8 +32,10 @@ class HotelsAdapter: RecyclerView.Adapter<HotelsAdapterViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: HotelsAdapterViewHolder, position: Int) {
+
         differ.currentList.getOrNull(position)?.let {
             holder.bind(it)
+
         }
     }
 
@@ -57,28 +59,38 @@ class HotelsAdapter: RecyclerView.Adapter<HotelsAdapterViewHolder>() {
 
     }
 
-}
+   inner class HotelsAdapterViewHolder(private val binding: HotelListItemBinding): RecyclerView.ViewHolder(binding.root){
+        fun bind(viewModel: HotelListUIModel){
 
-class HotelsAdapterViewHolder(private val binding: HotelListItemBinding): RecyclerView.ViewHolder(binding.root){
-    fun bind(viewModel: HotelListUIModel){
-
-        val url = viewModel.thumbnailImage.replace("/0x0", "")
-        Glide.with(binding.root).load(url).into(binding.imageHotel)
-
+            binding.insertButton.setOnClickListener {
+                val item = differ.currentList[position]
+                onItemClick(item)
+            }
 
 
-        binding.hotelName.text= viewModel.name
-        binding.price.text = viewModel.price.toString()
-        binding.cityCountry.text = "${viewModel.city}, ${viewModel.country}"
-        binding.reviewScoreLocalized.text = viewModel.reviewScore.toString()
-        binding.cityCenterDistance.text = viewModel.cityCenterDistance.toString()
-        binding.roomsName.text = viewModel.roomName
-        binding.address.text = viewModel.cityCenterDistanceName
+
+            val url = viewModel.thumbnailImage.replace("/0x0", "")
+            Glide.with(binding.root).load(url).into(binding.imageHotel)
+
+
+
+            binding.hotelName.text= viewModel.name
+            binding.price.text = viewModel.price.toString()
+            binding.cityCountry.text = "${viewModel.city}, ${viewModel.country}"
+            binding.reviewScoreLocalized.text = viewModel.reviewScore.toString()
+            binding.cityCenterDistance.text = viewModel.cityCenterDistance.toString()
+            binding.roomsName.text = viewModel.roomName
+            binding.address.text = viewModel.cityCenterDistanceName
 
 //        binding.txt.text = viewModel.airlineName
 //        binding.root.setOnClickListener{
 //            onClick(viewModel)
 //
 //        }
+        }
     }
+
+
 }
+
+

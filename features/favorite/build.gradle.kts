@@ -3,13 +3,10 @@ plugins {
     id(Plugins.jetbrainsKotlin)
     id(Plugins.kotlinKapt)
     id(Plugins.hilt)
-
-
-
 }
 
 android {
-    namespace = "com.example.hotels"
+    namespace = "com.example.favorite"
     compileSdk = 34
 
     defaultConfig {
@@ -41,26 +38,33 @@ android {
 }
 
 dependencies {
-    implementation(Libs.KotlinEx.coreCore)
-    implementation(Libs.UI.appCompat)
-    implementation(Libs.UI.material)
-    testImplementation(Libs.Test.junitTest)
-    androidTestImplementation(Libs.Test.extJunitTest)
-    androidTestImplementation(Libs.Test.espressoTest)
-    implementation("androidx.navigation:navigation-fragment-ktx:2.7.6")
-    implementation("com.github.bumptech.glide:glide:4.12.0")
-    annotationProcessor("com.github.bumptech.glide:compiler:4.12.0")
+    implementation(Libs.Hilt.hilt)
+    kapt(Libs.Hilt.hiltKapt)
 
-    implementation(project(":common"))
+    //implementation("androidx.navigation:navigation-fragment-ktx:2.7.6")
+    //implementation("com.github.bumptech.glide:glide:4.12.0")
+    //annotationProcessor("com.github.bumptech.glide:compiler:4.12.0")
+
     implementation(project(":domain"))
     implementation(project(":entities"))
 
-    implementation(Libs.Hilt.hilt)
-    kapt(Libs.Hilt.hiltKapt)
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1")
+
 //    implementation("androidx.core:core-ktx:1.12.0")
 //    implementation("androidx.appcompat:appcompat:1.6.1")
 //    implementation("com.google.android.material:material:1.11.0")
 //    testImplementation("junit:junit:4.13.2")
 //    androidTestImplementation("androidx.test.ext:junit:1.1.5")
 //    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    implementation(Libs.Navigation.navigation)
+    implementation(Libs.Glide.glideGlide)
+    annotationProcessor(Libs.Glide.glideCompiler)
+
+    implementation(Libs.KotlinEx.coreCore)
+    implementation(Libs.UI.appCompat)
+    implementation(Libs.UI.material)
+    testImplementation(Libs.Test.junitTest)
+    androidTestImplementation(Libs.Test.extJunitTest)
+    androidTestImplementation(Libs.Test.espressoTest)
 }
