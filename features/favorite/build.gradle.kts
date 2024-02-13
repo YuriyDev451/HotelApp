@@ -47,6 +47,7 @@ dependencies {
 
     implementation(project(":domain"))
     implementation(project(":entities"))
+    implementation(project(":common"))
 
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1")

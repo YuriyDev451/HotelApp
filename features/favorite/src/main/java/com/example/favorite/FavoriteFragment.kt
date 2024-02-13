@@ -1,36 +1,25 @@
 package com.example.favorite
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.common.base.BaseFragment
 import com.example.favorite.databinding.FragmentFavoriteBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class FavoriteFragment : Fragment() {
+class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>(FragmentFavoriteBinding::inflate) {
 
-    lateinit var binding: FragmentFavoriteBinding
+
 
     val viewModel: FavoriteViewModel by viewModels()
 
-    private lateinit var adapter: FavoriteAdapter
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        binding = FragmentFavoriteBinding.inflate(inflater)
-        // Inflate the layout for this fragment
-        return binding.root
+    private lateinit var favoriteAdapter: FavoriteAdapter
 
 
-
-
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -38,16 +27,38 @@ class FavoriteFragment : Fragment() {
         initRecyclerAdapter()
 
         viewModel.getAll().observe(viewLifecycleOwner) { items ->
-            adapter.setData(items)
+            favoriteAdapter.setData(items)
         }
     }
 
     private fun initRecyclerAdapter(){
-        adapter = FavoriteAdapter()
+        favoriteAdapter = FavoriteAdapter()
 
 
         binding.recyclerView.layoutManager = LinearLayoutManager(context)
-        binding.recyclerView.adapter = adapter
+        binding.recyclerView.adapter = favoriteAdapter
+
+        val callback = object: ItemTouchHelper.SimpleCallback(
+            0,
+            ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT){
+            override fun onMove(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                target: RecyclerView.ViewHolder
+            ): Boolean {
+                return false
+            }
+
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val position = viewHolder.adapterPosition
+                val item = favoriteAdapter.differ.currentList[position]
+                viewModel.delete(item)
+                favoriteAdapter.removeItem(position)
+            }
+
+        }
+        val itemTouchHelper = ItemTouchHelper(callback)
+        itemTouchHelper.attachToRecyclerView(binding.recyclerView)
     }
 
 

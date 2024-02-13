@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.common.base.BaseFragment
 import com.example.hotels.databinding.FragmentHotelsBinding
 import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.WithFragmentBindings
@@ -15,28 +16,13 @@ import kotlinx.coroutines.launch
 
 
 @AndroidEntryPoint
-class HotelsFragment : Fragment() {
-    lateinit var binding: FragmentHotelsBinding
+class HotelsFragment : BaseFragment<FragmentHotelsBinding>(FragmentHotelsBinding::inflate) {
+
 
     val viewModel: HotelsViewModel by viewModels()
 
     private lateinit var adapter: HotelsAdapter
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        binding = FragmentHotelsBinding.inflate(inflater)
-
-//        binding.button2.setOnClickListener {
-//            lifecycleScope.launch{
-//                viewModel.getFlights()
-//            }
-//
-//        }
-
-        return binding.root
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -49,11 +35,12 @@ class HotelsFragment : Fragment() {
 
 
 
+
         viewModel.data.observe(viewLifecycleOwner){
             adapter.setData(it?.hotels ?: listOf())
         }
 
-        //addButton()
+
     }
 
     private fun initRecyclerAdapter(){

@@ -14,16 +14,28 @@ class FavoriteAdapter(
 ) : RecyclerView.Adapter<FavoriteAdapter.ViewHolder>() {
 
     private val differCallback = object : DiffUtil.ItemCallback<HotelListUIModel>() {
-        override fun areItemsTheSame(oldItem: HotelListUIModel, newItem: HotelListUIModel): Boolean {
+        override fun areItemsTheSame(
+            oldItem: HotelListUIModel,
+            newItem: HotelListUIModel
+        ): Boolean {
             return oldItem.id == newItem.id
         }
 
-        override fun areContentsTheSame(oldItem: HotelListUIModel, newItem: HotelListUIModel): Boolean {
+        override fun areContentsTheSame(
+            oldItem: HotelListUIModel,
+            newItem: HotelListUIModel
+        ): Boolean {
             return oldItem == newItem
         }
     }
 
-    private val differ = AsyncListDiffer(this, differCallback)
+     val differ = AsyncListDiffer(this, differCallback)
+
+    fun removeItem(position: Int) {
+        val itemList = differ.currentList.toMutableList()
+        itemList.removeAt(position)
+        differ.submitList(itemList)
+    }
 
     fun setData(items: List<HotelListUIModel>) {
         differ.submitList(items)
@@ -36,7 +48,7 @@ class FavoriteAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.itemView.setPadding(0,0,0,0)
+        holder.itemView.setPadding(0, 0, 0, 0)
 
         holder.bind(differ.currentList[position])
 
@@ -55,13 +67,13 @@ class FavoriteAdapter(
                 // Bind your item data here, e.g.,
                 val url = item.thumbnailImage.replace("/0x0", "")
                 Glide.with(root.context).load(url).into(binding.imageHotel)
-               // textViewTitle.text = item.title
-               // binding..text = item.price.toString()
+                // textViewTitle.text = item.title
+                // binding..text = item.price.toString()
 
                 binding.price.text = item.price.toString()
 
 
-                binding.hotelName.text= item.name
+                binding.hotelName.text = item.name
                 //binding.price.text = item.price.toString()
                 binding.cityCountry.text = "${item.city}, ${item.country}"
                 binding.reviewScoreLocalized.text = item.reviewScore.toString()

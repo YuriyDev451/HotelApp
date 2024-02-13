@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.common.Resource
 import com.example.common.State
+import com.example.common.base.BaseViewModel
 import com.example.domain.mapper.HotelsResponseToUIStateMapper
 import com.example.domain.useCase.HotelListUseCase
 import com.example.domain.useCase.dbUseCase.InsertItemUseCase
@@ -22,7 +23,7 @@ class HotelsViewModel @Inject constructor(
     val hotelListUseCase: HotelListUseCase,
     private val mapper: HotelsResponseToUIStateMapper,
     private val insertItemUseCase: InsertItemUseCase
-) : ViewModel() {
+) : BaseViewModel() {
 
     val state: MutableStateFlow<State?> = MutableStateFlow(null)
 

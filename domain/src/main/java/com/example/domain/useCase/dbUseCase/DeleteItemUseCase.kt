@@ -6,7 +6,7 @@ import com.example.entities.uimodel.HotelListUIModel
 import javax.inject.Inject
 
 class DeleteItemUseCase @Inject constructor(val dbRepository: HotelsDbRepository) {
-//    suspend fun delete(item: HotelListUIModel) {
-//        dbRepository.insert(item)
-//    }
+    suspend fun delete(item: HotelListUIModel) {
+        dbRepository.delete(item)
+    }
 }

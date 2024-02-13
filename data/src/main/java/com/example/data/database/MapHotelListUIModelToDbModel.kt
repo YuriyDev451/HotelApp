@@ -6,7 +6,7 @@ import com.example.entities.uimodel.HotelListUIModel
 class MapHotelList(){
 
     fun mapEntityToDbModel(input : HotelListUIModel) = HotelsDbModel(
-        idi = 0,
+
         id = input.id,
             name = input.name,
             address = input.address,

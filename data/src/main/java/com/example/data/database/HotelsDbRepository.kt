@@ -19,9 +19,9 @@ class HotelsDbRepository @Inject constructor(private val hotelsDao: HotelsDao) {
         hotelsDao.insert(mapper.mapEntityToDbModel(note))
     }
 
-   /* suspend fun delete(note: HotelsDbModel) {
-        hotelsDao.delete(note)
-    }*/
+    suspend fun delete(note: HotelListUIModel) {
+        hotelsDao.delete(mapper.mapEntityToDbModel(note))
+    }
 
     fun getAll(): LiveData<List<HotelListUIModel>> = MediatorLiveData<List<HotelListUIModel>>().apply {
         addSource(hotelsDao.getAll()){
