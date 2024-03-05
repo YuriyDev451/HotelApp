@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.common.base.BaseFragment
+import androidx.navigation.fragment.findNavController
+import com.example.common.toFavorite
 import com.example.favorite.databinding.FragmentFavoriteBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -15,9 +17,11 @@ class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>(FragmentFavoriteB
 
 
 
+
     val viewModel: FavoriteViewModel by viewModels()
 
     private lateinit var favoriteAdapter: FavoriteAdapter
+
 
 
 
@@ -60,6 +64,7 @@ class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>(FragmentFavoriteB
         val itemTouchHelper = ItemTouchHelper(callback)
         itemTouchHelper.attachToRecyclerView(binding.recyclerView)
     }
+
 
 
 }

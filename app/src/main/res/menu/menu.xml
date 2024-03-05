@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item android:id="@+id/hotels"
+            android:icon="@drawable/baseline_android_24"
+            android:title="Hotels"
+            />
+        <item android:id="@+id/favorite"
+            android:icon="@drawable/baseline_android_24"
+            android:title="Favorite"/>
+    </group>
+    <item android:title="Profile">
+        <menu>
+            <group android:checkableBehavior="single"/>
+            <item android:id="@+id/exit"
+                android:icon="@drawable/baseline_android_24"
+                android:title="Exit"
+                />
+        </menu>
+    </item>
+    <item android:title="About developer">
+        <menu>
+            <group android:checkableBehavior="single"/>
+            <item android:id="@+id/about_dev"
+                android:icon="@drawable/baseline_android_24"
+                android:title="information"
+                />
+        </menu>
+    </item>
+
+</menu>

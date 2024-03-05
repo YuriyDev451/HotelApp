@@ -38,6 +38,10 @@ android {
 
 dependencies {
 
+    implementation(Libs.Navigation.navigation)
+    implementation(Libs.Navigation.navigationUi)
+    implementation(Libs.Navigation.navigationFragment)
+
     implementation(Libs.KotlinEx.coreCore)
     implementation(Libs.UI.appCompat)
     implementation(Libs.UI.material)
